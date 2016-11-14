@@ -12,8 +12,12 @@ class Guess
     @remaining = 5
   end
 
-  def check_guess(input)
-    if !(1..100).to_a.include?(input.to_i)
+  def check_guess(input, cheat)
+    binding.pry
+    if cheat.eql?('true')
+      @message = "psst, the number is #{number}"
+      @color = "purple"
+    elsif !(1..100).to_a.include?(input.to_i)
       @message = "please make a proper guess (1-100)"
     else
       input = input.to_i
@@ -50,7 +54,8 @@ instance = Guess.new
 
 get '/' do 
   guess = params['guess']
-  message = instance.check_guess(guess)
+  cheat = params['cheat']
+  message = instance.check_guess(guess, cheat)
   erb :index, :locals => {:number => instance.number, :message => instance.message, :color => instance.color}
 end
 
