@@ -1,8 +1,8 @@
 require 'sinatra'
 require 'sinatra/reloader'
 
-var = rand(100)
+number = rand(100)
 
 get '/' do 
-  "The  is #{var}"
+  erb :index, :locals => {:number => number}
 end
