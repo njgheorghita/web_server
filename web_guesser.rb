@@ -13,12 +13,11 @@ class Guess
   end
 
   def check_guess(input, cheat)
-    binding.pry
     if cheat.eql?('true')
       @message = "psst, the number is #{number}"
       @color = "purple"
     elsif !(1..100).to_a.include?(input.to_i)
-      @message = "please make a proper guess (1-100)"
+      @message = "please make a guess (1-100)"
     else
       input = input.to_i
       @remaining -= 1
